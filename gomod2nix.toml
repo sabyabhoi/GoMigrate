@@ -1,0 +1,48 @@
+schema = 3
+
+[mod]
+  [mod."filippo.io/edwards25519"]
+    version = "v1.1.0"
+    hash = "sha256-9ACANrgWZSd5HYPfDZHY8DVbPSC9LOMgy8deq3rDOoc="
+  [mod."github.com/go-sql-driver/mysql"]
+    version = "v1.8.1"
+    hash = "sha256-Vp/au38P1tf1jNTBW34rdb5mly0cde5IIXu+EMjDDUY="
+  [mod."github.com/jinzhu/inflection"]
+    version = "v1.0.0"
+    hash = "sha256-3h3pHib5MaCXKyKLIMyQnSptDJ16kPjCOQPoEBoQsZg="
+  [mod."github.com/jinzhu/now"]
+    version = "v1.1.5"
+    hash = "sha256-NNLqoFx9FczBBDpD0O0aSHnC/YDZ9E/xQ340o7u63IM="
+  [mod."github.com/mattn/go-sqlite3"]
+    version = "v1.14.22"
+    hash = "sha256-CWF2Hjg43658NhaePWbGzS19gHJXjuTroG5c0W3hgYQ="
+  [mod."golang.org/x/mod"]
+    version = "v0.17.0"
+    hash = "sha256-CLaPeF6uTFuRDv4oHwOQE6MCMvrzkUjWN3NuyywZjKU="
+  [mod."golang.org/x/sync"]
+    version = "v0.7.0"
+    hash = "sha256-2ETllEu2GDWoOd/yMkOkLC2hWBpKzbVZ8LhjLu0d2A8="
+  [mod."golang.org/x/tools"]
+    version = "v0.20.0"
+    hash = "sha256-g5T5FrNPO/cf2W1lc+/93FcFB3HftPjqI72FueD9Wt8="
+  [mod."gorm.io/datatypes"]
+    version = "v1.2.0"
+    hash = "sha256-HtKC8GaVXMrKonledYFN3bCaTJ6YhC6CfrBPImem5lo="
+  [mod."gorm.io/driver/mysql"]
+    version = "v1.5.6"
+    hash = "sha256-eADqVVGImHD+N3CkffyJSVoPsZOFdi1l5ONGmGUyLpg="
+  [mod."gorm.io/driver/sqlite"]
+    version = "v1.5.5"
+    hash = "sha256-LvQ6bOu1d061XZAQRUUFzKumFaELm7GWPecLjjMz76A="
+  [mod."gorm.io/gen"]
+    version = "v0.3.26"
+    hash = "sha256-X6Yf98GlItniX+k7TbXyqsz+TmDkns93YUtaz1ZqrWo="
+  [mod."gorm.io/gorm"]
+    version = "v1.25.9"
+    hash = "sha256-8S5hSP9369EA9F2jwUFJYF657kjFOVFBwPjsCxyZ3RQ="
+  [mod."gorm.io/hints"]
+    version = "v1.1.2"
+    hash = "sha256-AVGDKMdWKPP7JuitANfjgB7wkI6RVurPSg9cQd1ihfE="
+  [mod."gorm.io/plugin/dbresolver"]
+    version = "v1.5.1"
+    hash = "sha256-Z6yH2MbxMWIgQBVJic2WKRSUTJjt7Te8nSe7utZoBsQ="

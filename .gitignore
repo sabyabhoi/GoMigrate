@@ -1,0 +1,6 @@
+/gomod2nix-template
+result
+.direnv
+.envrc
+.tmp
+.res
