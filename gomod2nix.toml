@@ -7,6 +7,18 @@ schema = 3
   [mod."github.com/go-sql-driver/mysql"]
     version = "v1.8.1"
     hash = "sha256-Vp/au38P1tf1jNTBW34rdb5mly0cde5IIXu+EMjDDUY="
+  [mod."github.com/jackc/pgpassfile"]
+    version = "v1.0.0"
+    hash = "sha256-H0nFbC34/3pZUFnuiQk9W7yvAMh6qJDrqvHp+akBPLM="
+  [mod."github.com/jackc/pgservicefile"]
+    version = "v0.0.0-20231201235250-de7065d80cb9"
+    hash = "sha256-j3pc2r15nf6FmLS+oLeKKYlJSI8jClk5fBOgQbhLrNI="
+  [mod."github.com/jackc/pgx/v5"]
+    version = "v5.5.5"
+    hash = "sha256-Uy9f1EVJwwf5eZtx/JuacqYMe7m/iOx/jHI81hRWqv8="
+  [mod."github.com/jackc/puddle/v2"]
+    version = "v2.2.1"
+    hash = "sha256-Edf8SLT/8l+xfHm9IjUGxs1MHtic2VgRyfqb6OzGA9k="
   [mod."github.com/jinzhu/inflection"]
     version = "v1.0.0"
     hash = "sha256-3h3pHib5MaCXKyKLIMyQnSptDJ16kPjCOQPoEBoQsZg="
@@ -16,12 +28,18 @@ schema = 3
   [mod."github.com/mattn/go-sqlite3"]
     version = "v1.14.22"
     hash = "sha256-CWF2Hjg43658NhaePWbGzS19gHJXjuTroG5c0W3hgYQ="
+  [mod."golang.org/x/crypto"]
+    version = "v0.22.0"
+    hash = "sha256-2+u9nd32+Bi7EEv7QFc12CRTbfV7DApNv+yKIr7+lTw="
   [mod."golang.org/x/mod"]
     version = "v0.17.0"
     hash = "sha256-CLaPeF6uTFuRDv4oHwOQE6MCMvrzkUjWN3NuyywZjKU="
   [mod."golang.org/x/sync"]
     version = "v0.7.0"
     hash = "sha256-2ETllEu2GDWoOd/yMkOkLC2hWBpKzbVZ8LhjLu0d2A8="
+  [mod."golang.org/x/text"]
+    version = "v0.14.0"
+    hash = "sha256-yh3B0tom1RfzQBf1RNmfdNWF1PtiqxV41jW1GVS6JAg="
   [mod."golang.org/x/tools"]
     version = "v0.20.0"
     hash = "sha256-g5T5FrNPO/cf2W1lc+/93FcFB3HftPjqI72FueD9Wt8="
@@ -31,6 +49,9 @@ schema = 3
   [mod."gorm.io/driver/mysql"]
     version = "v1.5.6"
     hash = "sha256-eADqVVGImHD+N3CkffyJSVoPsZOFdi1l5ONGmGUyLpg="
+  [mod."gorm.io/driver/postgres"]
+    version = "v1.5.7"
+    hash = "sha256-o3Akrtc6yEBr344MlMBP27ySluUoDeHvc+EQ5+jwdPQ="
   [mod."gorm.io/driver/sqlite"]
     version = "v1.5.5"
     hash = "sha256-LvQ6bOu1d061XZAQRUUFzKumFaELm7GWPecLjjMz76A="
