@@ -1,7 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"os"
 	"reflect"
 
 	"gorm.io/driver/mysql"
@@ -11,6 +13,63 @@ import (
 	"example.com/GoMigrate/dao/model"
 )
 
+type DBMS struct {
+	System   string `json:"system"`
+	Username string `json:"username"`
+	Password string `json:"password"`
+	Host     string `json:"host"`
+	Port     int    `json:"port"`
+	Database string `json:"database"`
+}
+
+func (d *DBMS) dsn() string {
+	switch d.System {
+	case "mysql":
+		return fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local", d.Username, d.Password, d.Host, d.Port, d.Database)
+	case "postgres":
+		return fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=disable TimeZone=Asia/Shanghai", d.Host, d.Username, d.Password, d.Database, d.Port)
+	default:
+		panic("Invalid DBMS")
+	}
+}
+
+func getDsnFromJson(filename string) (DBMS, DBMS) {
+	file, err := os.Open(filename)
+	if err != nil {
+		panic("Failed to open file")
+	}
+	defer file.Close()
+
+	var data struct {
+		From DBMS `json:"from"`
+		To   DBMS `json:"to"`
+	}
+
+	err = json.NewDecoder(file).Decode(&data)
+	if err != nil {
+		panic("Failed to decode json")
+	}
+	return data.From, data.To
+}
+
+func (p *DBMS) getConnection() *gorm.DB {
+	if p.System == "mysql" {
+		conn, err := gorm.Open(mysql.Open(p.dsn()), &gorm.Config{})
+		if err != nil {
+			panic("failed to connect database")
+		}
+		return conn
+	} else if p.System == "postgres" {
+		conn, err := gorm.Open(postgres.Open(p.dsn()), &gorm.Config{})
+		if err != nil {
+			panic("failed to connect database")
+		}
+		return conn
+	} else {
+		panic("Invalid DBMS")
+	}
+}
+
 func migrate(from *gorm.DB, to *gorm.DB, t reflect.Type, bufsize int) {
 	var count int64
 	elem := reflect.New(t).Interface()
@@ -18,10 +77,10 @@ func migrate(from *gorm.DB, to *gorm.DB, t reflect.Type, bufsize int) {
 
 	fmt.Printf("Count: %d\n", count)
 
-	to.AutoMigrate(t)
+	to.AutoMigrate(elem)
 
 	for i := 0; i < int(count); i += bufsize {
-    newArr := reflect.New(reflect.SliceOf(t)).Interface()
+		newArr := reflect.New(reflect.SliceOf(t)).Interface()
 		from.Limit(bufsize).Offset(i).Find(newArr)
 
 		result := to.Create(newArr)
@@ -32,21 +91,13 @@ func migrate(from *gorm.DB, to *gorm.DB, t reflect.Type, bufsize int) {
 }
 
 func main() {
-	// mySQL connection
-	dsn := "cognusboi:password123@tcp(0.0.0.0:3306)/gomigratedb?charset=utf8mb4&parseTime=True&loc=Local"
-	mysql, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-	if err != nil {
-		panic("failed to connect database")
-	}
+	FromDBMS, ToDBMS := getDsnFromJson("res/conf.json")
 
-	// Postgres connection
-	dsn = "host=0.0.0.0 user=cognusboi password=password123 dbname=gomigratedb port=5432 sslmode=disable TimeZone=Asia/Shanghai"
-	postgres, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-	if err != nil {
-		panic("failed to connect database")
-	}
+	// From connection
+  from := FromDBMS.getConnection()
 
-	postgres.AutoMigrate(&model.PERSON{})
+	// To connection
+  to := ToDBMS.getConnection()
 
-	migrate(mysql, postgres, reflect.TypeOf(model.PERSON{}), 10)
+	migrate(from, to, reflect.TypeOf(model.PERSON{}), 10)
 }
