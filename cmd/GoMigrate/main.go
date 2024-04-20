@@ -90,6 +90,7 @@ func migrate(from *gorm.DB, to *gorm.DB, t reflect.Type, bufsize int) {
 	}
 }
 
+
 func main() {
 	FromDBMS, ToDBMS := getDsnFromJson("res/conf.json")
 
@@ -99,5 +100,7 @@ func main() {
 	// To connection
   to := ToDBMS.getConnection()
 
-	migrate(from, to, reflect.TypeOf(model.PERSON{}), 10)
+  for _, t := range model.GetStructs() {
+    migrate(from, to, t, 10)
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "from": {
+  "to": {
     "system": "mysql",
     "username": "cognusboi",
     "password": "password123",
@@ -7,7 +7,7 @@
     "port": 3306,
     "database": "gomigratedb"
   },
-  "to": {
+  "from": {
     "system": "postgres",
     "username": "cognusboi",
     "password": "password123",
