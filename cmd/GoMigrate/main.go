@@ -8,6 +8,7 @@ import (
 
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/postgres"
+	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 
 	"example.com/GoMigrate/dao/model"
@@ -28,6 +29,8 @@ func (d *DBMS) dsn() string {
 		return fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local", d.Username, d.Password, d.Host, d.Port, d.Database)
 	case "postgres":
 		return fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=disable TimeZone=Asia/Shanghai", d.Host, d.Username, d.Password, d.Database, d.Port)
+	case "sqlite":
+		return fmt.Sprintf("%s.db", d.Database)
 	default:
 		panic("Invalid DBMS")
 	}
@@ -65,6 +68,12 @@ func (p *DBMS) getConnection() *gorm.DB {
 			panic("failed to connect database")
 		}
 		return conn
+	} else if p.System == "sqlite" {
+		conn, err := gorm.Open(sqlite.Open(p.dsn()), &gorm.Config{})
+		if err != nil {
+			panic("failed to connect database")
+		}
+		return conn
 	} else {
 		panic("Invalid DBMS")
 	}
@@ -90,17 +99,16 @@ func migrate(from *gorm.DB, to *gorm.DB, t reflect.Type, bufsize int) {
 	}
 }
 
-
 func main() {
 	FromDBMS, ToDBMS := getDsnFromJson("res/conf.json")
 
 	// From connection
-  from := FromDBMS.getConnection()
+	from := FromDBMS.getConnection()
 
 	// To connection
-  to := ToDBMS.getConnection()
+	to := ToDBMS.getConnection()
 
-  for _, t := range model.GetStructs() {
-    migrate(from, to, t, 10)
-  }
+	for _, t := range model.GetStructs() {
+		migrate(from, to, t, 10)
+	}
 }

@@ -25,6 +25,9 @@ schema = 3
   [mod."github.com/jinzhu/now"]
     version = "v1.1.5"
     hash = "sha256-NNLqoFx9FczBBDpD0O0aSHnC/YDZ9E/xQ340o7u63IM="
+  [mod."github.com/mattn/go-sqlite3"]
+    version = "v1.14.22"
+    hash = "sha256-CWF2Hjg43658NhaePWbGzS19gHJXjuTroG5c0W3hgYQ="
   [mod."golang.org/x/crypto"]
     version = "v0.22.0"
     hash = "sha256-2+u9nd32+Bi7EEv7QFc12CRTbfV7DApNv+yKIr7+lTw="
@@ -40,6 +43,9 @@ schema = 3
   [mod."gorm.io/driver/postgres"]
     version = "v1.5.7"
     hash = "sha256-o3Akrtc6yEBr344MlMBP27ySluUoDeHvc+EQ5+jwdPQ="
+  [mod."gorm.io/driver/sqlite"]
+    version = "v1.5.5"
+    hash = "sha256-LvQ6bOu1d061XZAQRUUFzKumFaELm7GWPecLjjMz76A="
   [mod."gorm.io/gorm"]
     version = "v1.25.9"
     hash = "sha256-8S5hSP9369EA9F2jwUFJYF657kjFOVFBwPjsCxyZ3RQ="
