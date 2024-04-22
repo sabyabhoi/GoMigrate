@@ -1,16 +1,16 @@
 package model
 
 import (
-	"reflect"
+  "reflect"
 )
 
 func GetStructs() []reflect.Type {
-	typesArr := []reflect.Type{
-		reflect.TypeOf(Product{}),
-		reflect.TypeOf(Sale{}),
-		reflect.TypeOf(Order{}),
-		reflect.TypeOf(Employee{}),
-	}
-	return typesArr
+    typesArr := []reflect.Type{
+    	reflect.TypeOf(Product{}),
+	reflect.TypeOf(Sale{}),
+	reflect.TypeOf(Order{}),
+	reflect.TypeOf(Employee{}),
+   }
+    return typesArr
 }
-
+    

@@ -58,18 +58,21 @@ func getDsnFromJson(filename string) (DBMS, DBMS) {
 func (p *DBMS) getConnection() *gorm.DB {
 	if p.System == "mysql" {
 		conn, err := gorm.Open(mysql.Open(p.dsn()), &gorm.Config{})
+    fmt.Printf("dsn = %s\n", p.dsn())
 		if err != nil {
 			panic("failed to connect database")
 		}
 		return conn
 	} else if p.System == "postgres" {
 		conn, err := gorm.Open(postgres.Open(p.dsn()), &gorm.Config{})
+    fmt.Printf("dsn = %s\n", p.dsn())
 		if err != nil {
 			panic("failed to connect database")
 		}
 		return conn
 	} else if p.System == "sqlite" {
 		conn, err := gorm.Open(sqlite.Open(p.dsn()), &gorm.Config{})
+    fmt.Printf("dsn = %s\n", p.dsn())
 		if err != nil {
 			panic("failed to connect database")
 		}
